@@ -18,13 +18,13 @@ async function displayWorks(projects) {
  
     console.log(projects);
     for (let i = 0; i < projects.length; i++) {
-        console.log(projects[i]);
+      //  console.log(projects[i]);
     
         displayWorkInGallery(projects[i], display);
     }
 }
 async function displayWorkInGallery(project, root) {
-    console.log(project);
+    //console.log(project);
     const container = document.createElement('figure');
     const work = document.createElement('figure');
     const img = document.createElement('img');
@@ -35,9 +35,25 @@ async function displayWorkInGallery(project, root) {
     container.appendChild(img);
     container.appendChild(work);
 }
+
+
+function createbutton(project) {
+   let name =  project.filter((item,index) => project.indexOf(item) === index);
+    let filters = document.getElementById('portfolio');
+    const portfolio = document.createElement('div');
+    portfolio.classList.add ('filters');
+    for (let i = 0; i < name.length; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = name[i].category.name;
+        filters.appendChild(portfolio);
+        portfolio.appendChild(btn);
+    }
+}
 async function main() {
     const projects = await getWorks();
     eraser('.gallery');
+    filtersname(projects);
+    createbutton(projects);
     displayWorks(projects);
 }
 main();
