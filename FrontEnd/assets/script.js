@@ -46,7 +46,7 @@ function createbutton(categories) {
     const filters = document.createElement('div');
     filters.classList.add('filters');
     portfolio.appendChild(filters);
-    buttoncreation(filters, 'All',0);
+    buttoncreation(filters, 'Tous',0);
     for (let i = 0; i < categories.length; i++) {
       buttoncreation(filters, categories[i].name, categories[i].id);
     }
