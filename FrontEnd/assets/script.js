@@ -2,8 +2,6 @@ function eraser(selector) {
     let works = document.querySelector(selector);
     works.innerHTML = '';
 }
-
-
 async function getWorks() {
     const answer = await fetch("http://localhost:5678/api/works");
     return await answer.json();
@@ -39,8 +37,6 @@ async function displayWorkInGallery(project, root) {
     container.appendChild(img);
     container.appendChild(work);
 }
-
-
 function createbutton(categories) {
     let portfolio = document.getElementById('portfolio');
     const filters = document.createElement('div');
