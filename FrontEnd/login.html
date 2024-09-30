@@ -11,7 +11,8 @@
 		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/login.css">
-	<link rel="stylesheet" href="./login.html">
+	<script src="./assets/login.js" defer></script>
+
 </head>
 <body>
     <header>
@@ -28,7 +29,7 @@
 	</header>
     <main>
         <h2>Login</h2>
-        <form method="post" action="http://localhost:5678/users/login" id="myForm">
+        <form id="myForm">
             <label for="email">Email</label>
             <input type="email" id="email" name="Email">
             <Label for="password">Password</Label>
@@ -44,6 +45,5 @@
 			</ul>
 		</nav>
 	</footer>
-	<script src="./assets/login.js"></script>
 </body>
 </html>
