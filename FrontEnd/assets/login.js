@@ -8,12 +8,14 @@ function formReset() {
 async function validateForm() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-
-    //Checker expression reguliere pour email. 
     
     
     if (email === '' || password === '') {
-        alert('Incorrect email or password! Please try again.  ');
+        document.getElementById('loginError').innerHTML = 'Merci de renseigner tous les champs!';
+        return false;
+    }
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false) {
+        document.getElementById('loginError').innerHTML = 'Adresse email non valide!';
         return false;
     }
     
@@ -35,10 +37,10 @@ async function validateForm() {
     }
     else {
         if (response.status === 401) {
-            alert('Mot de Passe incorrect!');
+            document.getElementById('loginError').innerHTML = 'Mot de Passe incorrect!';              
         }
         if (response.status === 404) {
-            alert('Email non trouvé!');
+            document.getElementById('loginError').innerHTML = 'Compte inexistant!';
         }
     }
 }
