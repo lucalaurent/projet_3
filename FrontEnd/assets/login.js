@@ -11,11 +11,11 @@ async function validateForm() {
     
     
     if (email === '' || password === '') {
-        document.getElementById('loginError').innerHTML = 'Merci de renseigner tous les champs!';
+        document.getElementById('loginError').textContent = 'Merci de renseigner tous les champs!';
         return false;
     }
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false) {
-        document.getElementById('loginError').innerHTML = 'Adresse email non valide!';
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,15})+$/.test(email) === false) {  //verifier comment construire une expression regex pour un email valide
+        document.getElementById('loginError').textContent = 'Format email non valide!';
         return false;
     }
     
@@ -34,6 +34,7 @@ async function validateForm() {
         let data = await response.json();
         let token = data.token;
         localStorage.setItem('token', token);
+        window.location.href = './index.html';
     }
     else {
         if (response.status === 401) {
