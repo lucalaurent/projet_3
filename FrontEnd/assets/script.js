@@ -48,22 +48,28 @@ function createbutton(categories) {
     }
 }
 function buttoncreation(filters, name, catId) {
-    const btn = document.createElement('button');
-    btn.textContent = name;
-    filters.appendChild(btn);
-    btn.addEventListener('click', () => filterWorks(catId));
+    if (localStorage.getItem('token') === null) {
+        const btn = document.createElement('button');
+        btn.textContent = name;
+        filters.appendChild(btn);
+        btn.addEventListener('click', () => filterWorks(catId));
+    }
+    else { 
+        const btn = document.getElementById('modal-opener');
+        btn.style.display = 'flex';
+    }
 }
 
 async function filterWorks(buttonId) {
-    const works = await getWorks();
-    eraser('.gallery');
-    if (buttonId === 0) {
-        displayWorks(works);
-    }
-    else {
-        let filteredWorks = works.filter(project => project.categoryId === buttonId);
-        displayWorks(filteredWorks);
-    }
+        const works = await getWorks();
+        eraser('.gallery');
+        if (buttonId === 0) {
+            displayWorks(works);
+        }
+        else {
+            let filteredWorks = works.filter(project => project.categoryId === buttonId);
+            displayWorks(filteredWorks);
+        }
 }
 let modal = null;
 

@@ -126,6 +126,16 @@ li:hover {
 	margin-bottom: 0.5em;
 }
 
+.section-head {
+	display:flex;
+	flex-direction:row-reverse;
+	justify-content: center;
+}
+#modal-opener {
+	display : flex; 
+	padding:10px;
+}
+
 .modal{
 	z-index:1;
 	display:flex;
@@ -155,7 +165,7 @@ li:hover {
 }
 #portfolio {
 	display:flex;
-	flex-direction:column-reverse;
+	flex-direction:column;
 }
 .gallery {
 	width: 100%;
