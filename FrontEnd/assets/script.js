@@ -54,34 +54,33 @@ function buttoncreation(filters, name, catId) {
         filters.appendChild(btn);
         btn.addEventListener('click', () => filterWorks(catId));
     }
-    else { 
+    else {
         const btn = document.getElementById('modal-opener');
         btn.style.display = 'flex';
     }
 }
 
 async function filterWorks(buttonId) {
-        const works = await getWorks();
-        eraser('.gallery');
-        if (buttonId === 0) {
-            displayWorks(works);
-        }
-        else {
-            let filteredWorks = works.filter(project => project.categoryId === buttonId);
-            displayWorks(filteredWorks);
-        }
+    const works = await getWorks();
+    eraser('.gallery');
+    if (buttonId === 0) {
+        displayWorks(works);
+    }
+    else {
+        let filteredWorks = works.filter(project => project.categoryId === buttonId);
+        displayWorks(filteredWorks);
+    }
 }
+
 let modal = null;
 
 const openModal = function (e) {
-    document.querySelector('.js-modal').addEventListener('click', openModal)
     e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute('href'))
-    console.log(target);
-    target.style.display = 'flex';
-    target.removeAttribute('aria-hidden');
-    target.setAttribute('aria-modal', 'true');
-    modal = target;
+    modal = document.querySelector(e.target.getAttribute('href'))
+    console.log(e.target);
+    modal.style.display = 'flex';
+    modal.removeAttribute('aria-hidden');
+    modal.setAttribute('aria-modal', 'true');
     modal.addEventListener('click', closeModal);
     modal.querySelector('.close-modal').addEventListener('click', closeModal);
 }
@@ -89,26 +88,34 @@ const openModal = function (e) {
 const closeModal = function (e) {
     console.log(modal);
     e.preventDefault();
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    modal.removeAttribute('aria-modal');
-    modal.removeEventListener('click', closeModal);
-    modal.querySelector('.close-modal').removeEventListener('click', closeModal);
-    modal = null;
+    if (e.target === modal || e.target.classList.contains('close-modal')) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        modal.removeAttribute('aria-modal');
+        modal.removeEventListener('click', closeModal);
+        modal.querySelector('.close-modal').removeEventListener('click', closeModal);
+        modal = null;
+    }
 }
 
-function modalContent() {
-    const work = getWorks(); //obtention des Works
-    const container = document.createElement('figure');
-    const img = document.createElement('img');
-    container.appendChild(img);
-    container.appendChild(work);
+function modalContent(project) {
+    //mettre dans une boucle avec les properties. 
+    console.log(project);
+    for (let i = 0; i < project.length; i++) {
+        const container = document.querySelector('.works-modifiable');
+        const figure = document.createElement('figure');
+        const img = document.createElement('img');
+        img.src = project[i].imageUrl;
+        img.alt = project[i].title;
+        container.appendChild(figure);
+        figure.appendChild(img);
+    }
 }
-    //Ajouter la corbeille,
-    // Ajouter event listener sur chacunne des corbeilles pour supprimer les Works
-    // Current target pour supprimer un work de la modal ET du front avec "Fetch Delete : ID" 
-    //Ajouter le bouton pour fermer la modal ET event listener pour fermer la modal 
-    
+//Ajouter la corbeille,
+// Ajouter event listener sur chacunne des corbeilles pour supprimer les Works
+// Current target pour supprimer un work de la modal ET du front avec "Fetch Delete : ID" 
+//Ajouter le bouton pour fermer la modal ET event listener pour fermer la modal 
+
 
 async function main() {
     const projects = await getWorks();
@@ -116,6 +123,7 @@ async function main() {
     eraser('.gallery');
     createbutton(categories);
     displayWorks(projects);
-    openModal();
+    document.querySelector('.js-modal').addEventListener('click', openModal)
+    modalContent(projects);
 }
 main();
