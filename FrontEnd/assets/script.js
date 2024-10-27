@@ -105,10 +105,13 @@ function modalContent(project) {
         const container = document.querySelector('.works-modifiable');
         const figure = document.createElement('figure');
         const img = document.createElement('img');
+        const trash = document.createElement('button');
         img.src = project[i].imageUrl;
         img.alt = project[i].title;
+        trash.textContent = 'Supprimer';
         container.appendChild(figure);
         figure.appendChild(img);
+        img.appendChild(trash);
     }
 }
 //Ajouter la corbeille,
