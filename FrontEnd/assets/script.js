@@ -20,7 +20,6 @@ async function displayWorks(projects) {
 
     console.log(projects);
     for (let i = 0; i < projects.length; i++) {
-        //  console.log(projects[i]);
 
         displayWorkInGallery(projects[i], display);
     }
@@ -38,7 +37,7 @@ async function displayWorkInGallery(project, root) {
     container.appendChild(work);
 }
 function createbutton(categories) {
-    let portfolio = document.getElementById('portfolio');
+    let portfolio = document.querySelector('.section-head');
     const filters = document.createElement('div');
     filters.classList.add('filters');
     portfolio.appendChild(filters);
@@ -105,13 +104,14 @@ function modalContent(project) {
         const container = document.querySelector('.works-modifiable');
         const figure = document.createElement('figure');
         const img = document.createElement('img');
-        const trash = document.createElement('button');
+        const trash = document.createElement('i');
+        img.classList.add('image');
         img.src = project[i].imageUrl;
         img.alt = project[i].title;
-        trash.textContent = 'Supprimer';
+        trash.classList.add('fa-light fa-trash-can');
         container.appendChild(figure);
         figure.appendChild(img);
-        img.appendChild(trash);
+        figure.appendChild(trash);
     }
 }
 //Ajouter la corbeille,
