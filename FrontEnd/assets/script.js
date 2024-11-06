@@ -35,6 +35,7 @@ async function displayWorkInGallery(project, root) {
     root.appendChild(container);
     container.appendChild(img);
     container.appendChild(work);
+    container.dataset.Id = project.id;
 }
 function createbutton(categories) {
     let portfolio = document.querySelector('.section-head');
@@ -85,7 +86,6 @@ const openModal = function (e) {
 }
 
 const closeModal = function (e) {
-    console.log(modal);
     e.preventDefault();
     if (e.target === modal || e.target.classList.contains('close-modal')) {
         modal.style.display = 'none';
@@ -108,11 +108,45 @@ function modalContent(project) {
         img.classList.add('image');
         img.src = project[i].imageUrl;
         img.alt = project[i].title;
-        trash.classList.add('fa-light fa-trash-can');
+        trash.classList.add('fa-solid');
+        trash.classList.add('fa-trash-can');
         container.appendChild(figure);
         figure.appendChild(img);
         figure.appendChild(trash);
+        trash.addEventListener('click', deleteWork);
+        figure.classList = project[i].id;
     }
+    const change = document.querySelector('add-photo');
+    change.addEventListener('click', changeModal);
+}
+
+async function deleteWork(e) {
+    e.preventDefault();
+    const workId = e.target.parentElement.classList;
+    console.log(workId);
+    const answer = await fetch(`http://localhost:5678/api/works/${workId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer' + localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        }
+    });
+    if (answer.ok) {
+        console.log('Work deleted successfully');
+        e.target.parentElement.parentElement.remove();
+    }
+    else {
+        console.error('Failed to delete work');
+    }
+}
+    
+function changeModal(e) {
+    e.preventDefault();
+    const modal = document.querySelector('.add-works');
+    const erase = document.querySelector('.works-modifiable');
+    erase.addAttribute('style');
+    erase.style.display = 'none';
+    modal.style.display = 'flex';
 }
 //Ajouter la corbeille,
 // Ajouter event listener sur chacunne des corbeilles pour supprimer les Works

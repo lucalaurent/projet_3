@@ -263,6 +263,7 @@ li:hover {
 }
 
 .works-modifiable figure {
+	position:relative;
 	width: 20%;
 	padding: 10px;
 }
@@ -270,6 +271,16 @@ li:hover {
 .works-modifiable img {
 	width: 100%;
 	margin: 10px;
+}
+
+.works-modifiable figure i {
+	position:absolute;
+	top:30px;
+	right:15px;
+	color:white;
+	background-color: black;
+	padding:4px;
+	border-radius:3px;
 }
 
 #portfolio h2 {
