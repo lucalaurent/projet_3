@@ -35,7 +35,7 @@ async function displayWorkInGallery(project, root) {
     root.appendChild(container);
     container.appendChild(img);
     container.appendChild(work);
-    container.dataset.Id = project.id;
+    container.dataset.id = project.id;
 }
 function createbutton(categories) {
     let portfolio = document.querySelector('.section-head');
@@ -114,26 +114,29 @@ function modalContent(project) {
         figure.appendChild(img);
         figure.appendChild(trash);
         trash.addEventListener('click', deleteWork);
-        figure.classList = project[i].id;
+        trash.dataset.id = project[i].id;
     }
-    const change = document.querySelector('add-photo');
-    change.addEventListener('click', changeModal);
+   // const change = document.querySelector('.add-photo');
+   //  change.addEventListener('click', changeModal);
 }
 
 async function deleteWork(e) {
     e.preventDefault();
-    const workId = e.target.parentElement.classList;
+    const workId = e.target.dataset.id;
     console.log(workId);
     const answer = await fetch(`http://localhost:5678/api/works/${workId}`, {
         method: 'DELETE',
         headers: {
-            'Authorization': 'Bearer' + localStorage.getItem('token'),
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
             'Content-Type': 'application/json'
         }
     });
     if (answer.ok) {
         console.log('Work deleted successfully');
-        e.target.parentElement.parentElement.remove();
+        e.target.parentElement.remove();
+        const gallery = document.querySelector('.gallery');
+        const delWork = gallery.querySelector(`figure[data-id="${workId}"]`);
+        delWork.remove();
     }
     else {
         console.error('Failed to delete work');
