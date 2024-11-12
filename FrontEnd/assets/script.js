@@ -77,6 +77,8 @@ let modal = null;
 const openModal = function (e) {
     e.preventDefault();
     modal = document.querySelector(e.target.getAttribute('href'))
+    page1 = document.getElementById('works-modifiable');
+    page1.classList.add('active');
     console.log(e.target);
     modal.style.display = 'flex';
     modal.removeAttribute('aria-hidden');
@@ -101,7 +103,7 @@ function modalContent(project) {
     //mettre dans une boucle avec les properties. 
     console.log(project);
     for (let i = 0; i < project.length; i++) {
-        const container = document.querySelector('.works-modifiable');
+        const container = document.getElementById('works-modifiable');
         const figure = document.createElement('figure');
         const img = document.createElement('img');
         const trash = document.createElement('i');
@@ -116,8 +118,11 @@ function modalContent(project) {
         trash.addEventListener('click', deleteWork);
         trash.dataset.id = project[i].id;
     }
-   // const change = document.querySelector('.add-photo');
-   //  change.addEventListener('click', changeModal);
+    const addPhoto = document.querySelector('.add-photo');
+    addPhoto.addEventListener('click', (event) => {
+        event.preventDefault();
+        changeModal(1);
+    });
 }
 
 async function deleteWork(e) {
@@ -143,13 +148,16 @@ async function deleteWork(e) {
     }
 }
     
-function changeModal(e) {
-    e.preventDefault();
-    const modal = document.querySelector('.add-works');
-    const erase = document.querySelector('.works-modifiable');
-    erase.addAttribute('style');
-    erase.style.display = 'none';
-    modal.style.display = 'flex';
+function changeModal(pageNumber) {
+    const page2 = document.getElementById('add-works');
+    const page1 = document.getElementById('.works-modifiable');
+    if (pageNumber === 1) {
+        page2.classList.add("active");
+        page1.classList.remove("active");
+    } else {
+        page2.classList.remove("active");
+        page1.classList.add("active");
+    }
 }
 //Ajouter la corbeille,
 // Ajouter event listener sur chacunne des corbeilles pour supprimer les Works

@@ -255,25 +255,25 @@ li:hover {
 	background-color: white;
 }
 
-.works-modifiable {
+#works-modifiable {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 
 }
 
-.works-modifiable figure {
+#works-modifiable figure {
 	position:relative;
 	width: 20%;
 	padding: 10px;
 }
 
-.works-modifiable img {
+#works-modifiable img {
 	width: 100%;
 	margin: 10px;
 }
 
-.works-modifiable figure i {
+#works-modifiable figure i {
 	position:absolute;
 	top:30px;
 	right:15px;
@@ -282,6 +282,13 @@ li:hover {
 	padding:4px;
 	border-radius:3px;
 }
+.modal-page {
+	display: none; /* Only show one page at a time */
+  }
+  
+  .modal-page.active {
+	display: block; /* Show active page */
+  }
 
 #portfolio h2 {
 	text-align: center;
