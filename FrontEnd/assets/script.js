@@ -150,7 +150,7 @@ async function deleteWork(e) {
     
 function changeModal(pageNumber) {
     const page2 = document.getElementById('add-works');
-    const page1 = document.getElementById('.works-modifiable');
+    const page1 = document.getElementById('works-modifiable');
     if (pageNumber === 1) {
         page2.classList.add("active");
         page1.classList.remove("active");
