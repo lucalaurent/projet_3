@@ -160,12 +160,15 @@ async function deleteWork(e) {
 function changeModal(pageNumber) {
     const page2 = document.getElementById('add-works');
     const page1 = document.getElementById('works-modifiable');
+    const changebtn = document.querySelector('.add-photo');
     if (pageNumber === 1) {
         page2.classList.add("active");
         page1.classList.remove("active");
+        changebtn.textContent = "Supprimer une photo";
     } else {
         page2.classList.remove("active");
         page1.classList.add("active");
+        changebtn.textContent = "Ajouter une photo";
     }
 }
 //Ajouter la corbeille,
