@@ -89,6 +89,8 @@ const openModal = function (e) {
 
 const closeModal = function (e) {
     e.preventDefault();
+    const page1 = document.getElementById('works-modifiable');
+    const page2 = document.getElementById('add-works');
     if (e.target === modal || e.target.classList.contains('close-modal')) {
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
@@ -96,7 +98,14 @@ const closeModal = function (e) {
         modal.removeEventListener('click', closeModal);
         modal.querySelector('.close-modal').removeEventListener('click', closeModal);
         modal = null;
+        if (page1.classList.contains('active')) {
+            page1.classList.remove('active');
+        }
+        if (page2.classList.contains('active')) {
+            page2.classList.remove('active');
+        }
     }
+  
 }
 
 function modalContent(project) {
