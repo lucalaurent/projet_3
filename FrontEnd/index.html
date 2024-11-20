@@ -15,13 +15,16 @@
 </head>
 
 <body>
+	<div class="mode-edition"><i class="fa-regular fa-pen-to-square"></i>
+		<p> Mode édition</p>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul>
-				<li><a href='#portfolio'>projets</a></li> <!-- Ajouter encre vers projets et contact.-->
+				<li><a href='#portfolio'>projets</a></li>
 				<li><a href='#contact'>contact</a></li>
-				<li><a href="./login.html">login</a></li>
+				<li><a href="./login.html">login</a></li> <!-- Swap to logout if logged in -->
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -49,21 +52,30 @@
 			<div id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
 				aria-labelledby="modalTitle" style="display:none;">
 				<div class="modal-wraper">
-					<h3 id="modalTitle">Galerie Photo</h3>
-					<button class="close-modal">Fermer modal</button>
-					<!--Page 1 pour supprimer les works-->
-					<div id="works-modifiable" class="modal-page">
-
+					<div class="modal-head">
+						<i class="fa-solid fa-xmark"></i>
 					</div>
-					<button class="add-photo">Ajouter une photo</button>
+					<!--Page 1 pour supprimer les works-->
+					<div id="page1" class="modal-page">
+						<div class="page1-contenu">
+							<h3 id="page1-title">Galerie Photo</h3>
+								<div id="works-modifiable">
+
+								</div>
+							<button class="add-photo">Ajouter une photo</button>
+						</div>
+					</div>
 					<!--Page 2 pour ajouter des works-->
 					<div id="add-works" class="modal-page">
+						<button id="remove-works"><i class="fa-solid fa-arrow-left"></i></button>
 						<input type="file" id="photoInput" accept="image/*" multiple>
-                        <button id="add-works-btn">Ajouter</button>
+						<button id="add-works-btn">Ajouter</button>
 					</div>
 				</div>
 			</div>
 		</aside>
+
+
 		<section id="portfolio">
 			<div class="section-head">
 				<h2>Mes projets</h2>

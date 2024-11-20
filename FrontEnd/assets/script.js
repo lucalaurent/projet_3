@@ -77,21 +77,25 @@ let modal = null;
 const openModal = function (e) {
     e.preventDefault();
     modal = document.querySelector(e.target.getAttribute('href'))
-    page1 = document.getElementById('works-modifiable');
+    page1 = document.getElementById('page1');
+    page2 = document.getElementById('add-works');
     page1.classList.add('active');
     console.log(e.target);
     modal.style.display = 'flex';
     modal.removeAttribute('aria-hidden');
     modal.setAttribute('aria-modal', 'true');
     modal.addEventListener('click', closeModal);
-    modal.querySelector('.close-modal').addEventListener('click', closeModal);
+    modal.querySelector('.fa-xmark').addEventListener('click', closeModal);
+    if (page2.classList.contains('active')) {
+        page2.classList.remove('active');
+    }
 }
 
 const closeModal = function (e) {
     e.preventDefault();
-    const page1 = document.getElementById('works-modifiable');
+    const page1 = document.getElementById('page1');
     const page2 = document.getElementById('add-works');
-    if (e.target === modal || e.target.classList.contains('close-modal')) {
+    if (e.target === modal || e.target.classList.contains('fa-xmark')) {
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
         modal.removeAttribute('aria-modal');
@@ -132,6 +136,11 @@ function modalContent(project) {
         event.preventDefault();
         changeModal(1);
     });
+    const delPhoto = document.getElementById('remove-works');
+    delPhoto.addEventListener('click', (event) => {
+        event.preventDefault();
+        changeModal(2);
+    })
 }
 
 async function deleteWork(e) {
@@ -159,16 +168,14 @@ async function deleteWork(e) {
     
 function changeModal(pageNumber) {
     const page2 = document.getElementById('add-works');
-    const page1 = document.getElementById('works-modifiable');
-    const changebtn = document.querySelector('.add-photo');
+    const page1 = document.getElementById('page1');
+
     if (pageNumber === 1) {
         page2.classList.add("active");
         page1.classList.remove("active");
-        changebtn.textContent = "Supprimer une photo";
     } else {
         page2.classList.remove("active");
         page1.classList.add("active");
-        changebtn.textContent = "Ajouter une photo";
     }
 }
 //Ajouter la corbeille,
