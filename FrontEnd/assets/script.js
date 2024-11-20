@@ -141,6 +141,12 @@ function modalContent(project) {
         event.preventDefault();
         changeModal(2);
     })
+    const addWork = document.getElementById('photoInput');
+    addWork.addEventListener('change', (ev) => {
+        newWorks(ev, addWork);
+    }
+        
+    )
 }
 
 async function deleteWork(e) {
@@ -177,6 +183,17 @@ function changeModal(pageNumber) {
         page2.classList.remove("active");
         page1.classList.add("active");
     }
+}
+
+function newWorks(e,button){
+    e.preventDefault();
+    let addPhoto = new FileReader();
+    const newImage = document.getElementById('new-image');
+    addPhoto.onload = (evt) => {
+        console.log(evt.target.result);
+        newImage.src = evt.target.result;
+    }
+    addPhoto.readAsDataURL();
 }
 //Ajouter la corbeille,
 // Ajouter event listener sur chacunne des corbeilles pour supprimer les Works
