@@ -141,17 +141,18 @@ body {
 	font-family: 'Work Sans';
 	font-size: 14px;
 }
-.mode-edition{
-	display:flex;
+
+.mode-edition {
+	display: flex;
 	justify-content: center;
-	align-items:center;
-	min-width:100vh;
-	width:100%;
-	height:15px;
-	background:black;
-	color:white;
-	margin:0;
-	padding:0;
+	align-items: center;
+	min-width: 100vh;
+	width: 100%;
+	height: 15px;
+	background: black;
+	color: white;
+	margin: 0;
+	padding: 0;
 }
 
 header {
@@ -245,18 +246,20 @@ li:hover {
 	display: flex;
 	padding: 10px;
 }
-.modal-wraper button{
-	border-radius:30px;
+
+.modal-wraper button {
+	border-radius: 30px;
 	background-color: #1D6154;
-	color:white;
+	color: white;
 	font-size: medium;
 	font-weight: thin;
-	padding-right:15px;
-	padding-left:15px;
-	padding-top:5px;
-	padding-bottom:5px;
+	padding-right: 15px;
+	padding-left: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 
 }
+
 .modal {
 	z-index: 1;
 	display: flex;
@@ -276,59 +279,64 @@ li:hover {
 	max-height: calc(100vh - 20px);
 	padding: 20px;
 	background-color: white;
-	border-radius:5px;
-}
-.modal-head{
-	width:100%;
-	height:30px;
-	position:relative;
-	display:flex;
-	flex-direction:column;
-	justify-content:center;
-	align-items:center;
-}
-.modal-head i{
-	position:absolute;
-	top:5px;
-	right:5px;
-	color:black;
-	font-size:1.5em;
+	border-radius: 5px;
 }
 
-.close-modal{
-	border:none;
-	background:white;
+.modal-head {
+	width: 100%;
+	height: 30px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-head i {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: black;
+	font-size: 1.5em;
+}
+
+.close-modal {
+	border: none;
+	background: white;
 }
 
 #page1 {
-	position:relative;
+	position: relative;
 	flex-direction: row;
 	flex-wrap: wrap;
 
 }
-#page1 h3{
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	font-size:large;
+
+#page1 h3 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: large;
 }
+
 #works-modifiable {
-	display:flex;
+	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	border-bottom:solid gray 2px;
-	margin-bottom:10px;
+	border-bottom: solid gray 2px;
+	margin-bottom: 10px;
 
 }
-#works-modifiable h3{
-	position:absolute;
-	top:20px;
-	right:auto;
-	left:auto;
+
+#works-modifiable h3 {
+	position: absolute;
+	top: 20px;
+	right: auto;
+	left: auto;
 }
 
 #works-modifiable figure {
-	position:relative;
+	position: relative;
 	width: 20%;
 	padding: 10px;
 }
@@ -339,21 +347,51 @@ li:hover {
 }
 
 #works-modifiable figure i {
-	position:absolute;
-	top:30px;
-	right:15px;
-	color:white;
+	position: absolute;
+	top: 30px;
+	right: 15px;
+	color: white;
 	background-color: black;
-	padding:4px;
-	border-radius:3px;
+	padding: 4px;
+	border-radius: 3px;
 }
+
 .modal-page {
-	display: none; /* Only show one page at a time */
-  }
-  
-  .modal-page.active {
-	display: flex; /* Show active page */
-  }
+	display: none;
+	/* Only show one page at a time */
+}
+
+.modal-page.active {
+	display: flex;
+	/* Show active page */
+}
+.fa-arrow-left{
+	display:none;
+}
+.fa-arrow-left.active{
+	display:flex;
+}
+
+#add-works {
+	position: relative;
+}
+
+#remove-works {
+	position: absolute;
+	top: 2px;
+	left: 10px;
+	background-color: none;
+	border: none;
+}
+
+#photoform {
+	display: flex;
+	flex-direction: column;
+	align-items: space-evenly;
+	justify-content: center;
+	width: 100%;
+	margin: auto;
+}
 
 #portfolio h2 {
 	text-align: center;

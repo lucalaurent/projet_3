@@ -95,18 +95,22 @@ const closeModal = function (e) {
     e.preventDefault();
     const page1 = document.getElementById('page1');
     const page2 = document.getElementById('add-works');
+    const returnBtn = document.getElementById('remove-works');
     if (e.target === modal || e.target.classList.contains('fa-xmark')) {
         modal.style.display = 'none';
         modal.setAttribute('aria-hidden', 'true');
         modal.removeAttribute('aria-modal');
         modal.removeEventListener('click', closeModal);
-        modal.querySelector('.close-modal').removeEventListener('click', closeModal);
+        modal.querySelector('.fa-xmark').removeEventListener('click', closeModal);
         modal = null;
         if (page1.classList.contains('active')) {
             page1.classList.remove('active');
         }
         if (page2.classList.contains('active')) {
             page2.classList.remove('active');
+        }
+        if (returnBtn.classList.contains('active')) {
+            returnBtn.classList.remove('active');
         }
     }
   
@@ -175,13 +179,16 @@ async function deleteWork(e) {
 function changeModal(pageNumber) {
     const page2 = document.getElementById('add-works');
     const page1 = document.getElementById('page1');
+    const returnBtn = document.getElementById('remove-works');
 
     if (pageNumber === 1) {
         page2.classList.add("active");
         page1.classList.remove("active");
+        returnBtn.classList.add("active");
     } else {
         page2.classList.remove("active");
         page1.classList.add("active");
+        returnBtn.classList.remove("active");
     }
 }
 

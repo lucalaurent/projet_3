@@ -53,6 +53,8 @@
 				aria-labelledby="modalTitle" style="display:none;">
 				<div class="modal-wraper">
 					<div class="modal-head">
+						<i id="remove-works" class="fa-solid fa-arrow-left"></i>
+
 						<i class="fa-solid fa-xmark"></i>
 					</div>
 					<!--Page 1 pour supprimer les works-->
@@ -67,11 +69,23 @@
 					</div>
 					<!--Page 2 pour ajouter des works-->
 					<div id="add-works" class="modal-page">
-						<button id="remove-works"><i class="fa-solid fa-arrow-left"></i></button>
-						<input type="file" id="photoInput" accept="image/*">
-						<img id="new-image">
-						<button id="add-works-btn">Ajouter</button>
-					</div>
+						
+						<form id="photoform">
+							<img id="new-image" src="">
+							<label for="photoInput"> Choisir une photo : </label>
+						<input type="file" name="+ Ajouter une photo" id="photoInput" accept="image/*" required>
+						<label for="work-name">titre</label>
+						<input type="text" id="work-name" required>
+						<label for="categories">Choisir une catégorie:</label>
+						<select id="categories" required>
+							<option> </option>
+							<option>categorie </option>
+						</select>
+						
+						<button type="submit" id="add-works-btn">Ajouter</button>
+					</form>
+					
+				</div>
 				</div>
 			</div>
 		</aside>
