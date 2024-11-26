@@ -90,7 +90,13 @@ const openModal = function (e) {
         page2.classList.remove('active');
     }
 }
-
+const editMode = function () {
+    const token = localStorage.getItem('token');
+    const modeEdition = document.querySelector('.mode-edition');
+    if (token == null) {
+        modeEdition.style.display = 'none';
+    }
+}
 const closeModal = function (e) {
     e.preventDefault();
     const page1 = document.getElementById('page1');
@@ -211,6 +217,7 @@ function newWorks(e,button){
 async function main() {
     const projects = await getWorks();
     const categories = await getCategories();
+    editMode();
     eraser('.gallery');
     createbutton(categories);
     displayWorks(projects);
