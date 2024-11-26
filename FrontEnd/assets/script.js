@@ -151,12 +151,12 @@ function modalContent(project) {
         event.preventDefault();
         changeModal(2);
     })
-    const addWork = document.getElementById('photoInput');
+   /*  const addWork = document.getElementById('photoInput');
     addWork.addEventListener('click', (ev) => {
-        newWorks(ev, addWork);
-    }
+        newWorks(ev, addWork); 
+    }*/
         
-    )
+    
 }
 
 async function deleteWork(e) {
@@ -198,7 +198,7 @@ function changeModal(pageNumber) {
     }
 }
 
-function newWorks(e,button) {
+/* function newWorks(e,button) {
     console.log("file reader starts!")
   //  e.preventDefault();
     let addPhoto = new FileReader();
@@ -208,7 +208,7 @@ function newWorks(e,button) {
         newImage.src = evt.target.result;
     }
     addPhoto.readAsDataURL(addPhoto);
-}
+} */
 //Ajouter la corbeille,
 // Ajouter event listener sur chacunne des corbeilles pour supprimer les Works
 // Current target pour supprimer un work de la modal ET du front avec "Fetch Delete : ID" 
