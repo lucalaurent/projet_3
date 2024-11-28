@@ -75,7 +75,7 @@ async function filterWorks(buttonId) {
 let modal = null;
 
 const openModal = function (e) {
-    e.preventDefault();
+  //  e.preventDefault();
     modal = document.querySelector(e.target.getAttribute('href'))
     page1 = document.getElementById('page1');
     page2 = document.getElementById('add-works');
@@ -98,7 +98,6 @@ const editMode = function () {
     }
 }
 const closeModal = function (e) {
-    e.preventDefault();
     const page1 = document.getElementById('page1');
     const page2 = document.getElementById('add-works');
     const returnBtn = document.getElementById('remove-works');
@@ -143,22 +142,18 @@ function modalContent(project) {
     }
     const addPhoto = document.querySelector('.add-photo');
     addPhoto.addEventListener('click', (event) => {
-        event.preventDefault();
+       
         changeModal(1);
     });
     const delPhoto = document.getElementById('remove-works');
     delPhoto.addEventListener('click', (event) => {
-        event.preventDefault();
+        
         changeModal(2);
     })
 
-    const addWork = document.getElementById('upload-photo');
+    /* const addWork = document.getElementById('photo-input');
     addWork.addEventListener('click', (ev) => {
-        console.log('it works');
-        const newPhoto = document.getElementById('photo-input');
-        console.log(newPhoto);
-        newPhoto.click();
-    })
+    })  */
 }
 
 async function deleteWork(e) {
