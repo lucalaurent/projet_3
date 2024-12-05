@@ -75,7 +75,7 @@ async function filterWorks(buttonId) {
 let modal = null;
 
 const openModal = function (e) {
-  //  e.preventDefault();
+    //  e.preventDefault();
     modal = document.querySelector(e.target.getAttribute('href'))
     page1 = document.getElementById('page1');
     page2 = document.getElementById('add-works');
@@ -118,7 +118,7 @@ const closeModal = function (e) {
             returnBtn.classList.remove('active');
         }
     }
-  
+
 }
 
 function modalContent(project) {
@@ -142,18 +142,19 @@ function modalContent(project) {
     }
     const addPhoto = document.querySelector('.add-photo');
     addPhoto.addEventListener('click', (event) => {
-       
+
         changeModal(1);
     });
     const delPhoto = document.getElementById('remove-works');
     delPhoto.addEventListener('click', (event) => {
-        
+
         changeModal(2);
     })
 
-    /* const addWork = document.getElementById('photo-input');
-    addWork.addEventListener('click', (ev) => {
-    })  */
+    const addWork = document.getElementById('photo-input');
+    addWork.addEventListener('change', () => {
+        newWorks();
+    })
 }
 
 async function deleteWork(e) {
@@ -178,7 +179,7 @@ async function deleteWork(e) {
         console.error('Failed to delete work');
     }
 }
-    
+
 function changeModal(pageNumber) {
     const page2 = document.getElementById('add-works');
     const page1 = document.getElementById('page1');
@@ -195,17 +196,21 @@ function changeModal(pageNumber) {
     }
 }
 
- function newWorks(e,button) {
+function newWorks() {
     console.log("file reader starts!")
-  //  e.preventDefault();
-    let addPhoto = new FileReader();
-    const newImage = document.getElementById('new-image');
-    addPhoto.onload = (evt) => {
-        console.log(evt.target.result);
-        newImage.src = evt.target.result;
+    let reader = new FileReader();
+    const preview = document.getElementById('new-image');
+    let file = document.getElementById('photo-input').files[0];
+    reader.addEventListener("load", () => {
+        console.log(reader.result);
+        preview.src = reader.result;
+    },
+    false,);
+    if (file) {
+        reader.readAsDataURL(file);
     }
-    addPhoto.readAsDataURL(addPhoto);
-} 
+        
+}
 //Ajouter la corbeille,
 // Ajouter event listener sur chacunne des corbeilles pour supprimer les Works
 // Current target pour supprimer un work de la modal ET du front avec "Fetch Delete : ID" 
