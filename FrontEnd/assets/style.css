@@ -451,6 +451,10 @@ li:hover {
 	color: #1D6154;
 	margin: 20px;
 }
+.modal-wraper button:disabled {
+	color:white;
+	background-color: lightseagreen;
+}
 
 .filters button:hover {
 	cursor: pointer;

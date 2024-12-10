@@ -75,7 +75,6 @@ async function filterWorks(buttonId) {
 let modal = null;
 
 const openModal = function (e) {
-    //  e.preventDefault();
     modal = document.querySelector(e.target.getAttribute('href'))
     page1 = document.getElementById('page1');
     page2 = document.getElementById('add-works');
@@ -142,12 +141,10 @@ function modalContent(project) {
     }
     const addPhoto = document.querySelector('.add-photo');
     addPhoto.addEventListener('click', (event) => {
-
         changeModal(1);
     });
     const delPhoto = document.getElementById('remove-works');
     delPhoto.addEventListener('click', (event) => {
-
         changeModal(2);
     })
 
@@ -155,6 +152,12 @@ function modalContent(project) {
     addWork.addEventListener('change', () => {
         newWorks();
     })
+    /* const newPhoto = document.getElementById('photo-input-btn');
+    newPhoto.addEventListener('click', (e) => {
+        e.preventDefault;
+        const photoInput = document.getElementById('photo-input');
+        photoInput.click;
+    }) */
 }
 
 async function deleteWork(e) {
@@ -211,6 +214,19 @@ function newWorks() {
     }
         
 }
+
+function formCategories(categories) {
+    const form = document.getElementById('categories');
+    for (let i = 0; i < categories.length; i++) {
+        const options = document.createElement('option');
+        options.textContent = categories[i].name;
+        form.appendChild(options);
+    }
+}
+
+function postForm() {
+    
+}
 //Ajouter la corbeille,
 // Ajouter event listener sur chacunne des corbeilles pour supprimer les Works
 // Current target pour supprimer un work de la modal ET du front avec "Fetch Delete : ID" 
@@ -226,5 +242,6 @@ async function main() {
     displayWorks(projects);
     document.querySelector('.js-modal').addEventListener('click', openModal)
     modalContent(projects);
+    formCategories(categories);
 }
 main();
