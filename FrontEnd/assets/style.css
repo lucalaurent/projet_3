@@ -224,7 +224,11 @@ a {
 }
 
 li:hover {
-	color: #B1663C;
+	cursor:pointer;
+}
+
+ul#menu-header li.off{
+	display:none;
 }
 
 #introduction {
@@ -453,7 +457,6 @@ li:hover {
 }
 .modal-wraper button:disabled {
 	color:white;
-	background-color: lightseagreen;
 }
 
 .filters button:hover {

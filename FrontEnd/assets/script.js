@@ -92,9 +92,19 @@ const openModal = function (e) {
 const editMode = function () {
     const token = localStorage.getItem('token');
     const modeEdition = document.querySelector('.mode-edition');
+    const loginbtn = document.getElementById('login');
+    const logoutbtn = document.getElementById('logout');
     if (token == null) {
         modeEdition.style.display = 'none';
+        loginbtn.classList.remove('off');
+        logoutbtn.classList.add('off');
+        console.log(loginbtn);
     }
+    logoutbtn.addEventListener('click', () => {
+        console.log("click registered");
+        localStorage.removeItem('token');
+        location.reload();
+    });
 }
 const closeModal = function (e) {
     const page1 = document.getElementById('page1');
@@ -227,10 +237,6 @@ function formCategories(categories) {
 function postForm() {
     
 }
-//Ajouter la corbeille,
-// Ajouter event listener sur chacunne des corbeilles pour supprimer les Works
-// Current target pour supprimer un work de la modal ET du front avec "Fetch Delete : ID" 
-//Ajouter le bouton pour fermer la modal ET event listener pour fermer la modal 
 
 
 async function main() {
