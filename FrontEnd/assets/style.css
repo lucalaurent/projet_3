@@ -334,7 +334,7 @@ ul#menu-header li.off{
 
 }
 
-#page1 h3 {
+.modal-page h3 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -405,14 +405,92 @@ ul#menu-header li.off{
 	background-color: none;
 	border: none;
 }
+.page2-contenu {
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	width:90%;
+	margin:auto;
+}
+.page2-contenu h3 {
+	margin-bottom:15px;
+}
 
 #photoform {
 	display: flex;
 	flex-direction: column;
-	align-items: space-evenly;
-	justify-content: center;
-	width: 100%;
+	justify-content: space-evenly;
+	width: 60%;
 	margin: auto;
+	margin-bottom:20px;
+	border-bottom:solid 1px lightgrey;
+}
+#photoform .new-image{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height:169px;
+	background-color: rgba(232, 241, 246, 1);
+	margin-bottom:15px;
+}
+#photoform #new-image{
+	display:none;
+	width:auto;
+	height:auto;
+	max-width:100%;
+	max-height:100%;
+}
+#photoform .new-image #empty-image{
+	display:flex;
+	height:70%;
+	flex-direction:column;
+	align-items: center;
+	justify-content: space-evenly;
+}
+.fa-image{
+	color: rgba(185, 197, 204, 1);
+	
+}
+#input-button {
+	background: rgba(203, 214, 220, 1);
+	color: rgba(48, 102, 133, 1);
+	border:none;
+	font-size:small;
+	padding:5px 15px;
+	margin:5px 10px;
+}
+#empty-image p{
+	font-size:x-small;
+	color: rgba(68, 68, 68, 1);
+}
+
+#photoform input, select {
+	border:none;
+	margin:10px;
+	box-shadow:0px 0px 5px 0px lightgrey;
+	height:30px;
+	margin-bottom:20px;
+}
+#photoform label {
+	margin-bottom:5px;
+	margin-left:10px;
+}
+
+#photo-input {
+	display:none;
+}
+#add-works-btn{
+	padding:5px 15px;
+	font-size:small;
+	font-weight:thin;
+	width:30%;
+	border:none;
+}
+.modal-wraper button:disabled {
+	color:white;
+	background-color: grey;
 }
 
 #portfolio h2 {
@@ -454,9 +532,6 @@ ul#menu-header li.off{
 	border: 1px #1D6154 solid;
 	color: #1D6154;
 	margin: 20px;
-}
-.modal-wraper button:disabled {
-	color:white;
 }
 
 .filters button:hover {

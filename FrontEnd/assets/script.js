@@ -106,6 +106,8 @@ const editMode = function () {
         location.reload();
     });
 }
+
+
 const closeModal = function (e) {
     const page1 = document.getElementById('page1');
     const page2 = document.getElementById('add-works');
@@ -131,8 +133,11 @@ const closeModal = function (e) {
 }
 
 function modalContent(project) {
-    //mettre dans une boucle avec les properties. 
     console.log(project);
+    const photoInput = document.getElementById('photo-input');
+    const workName = document.getElementById('work-name');
+    const categories = document.getElementById('categories');
+    const sendBtn = document.getElementById('add-works-btn');
     for (let i = 0; i < project.length; i++) {
         const container = document.getElementById('works-modifiable');
         const figure = document.createElement('figure');
@@ -149,6 +154,11 @@ function modalContent(project) {
         trash.addEventListener('click', deleteWork);
         trash.dataset.id = project[i].id;
     }
+    const inputBtn = document.getElementById('input-button');
+    const inputFile = document.getElementById('photo-input')
+    inputBtn.addEventListener('click', (e) => {
+        inputFile.click();
+    })
     const addPhoto = document.querySelector('.add-photo');
     addPhoto.addEventListener('click', (event) => {
         changeModal(1);
@@ -162,12 +172,11 @@ function modalContent(project) {
     addWork.addEventListener('change', () => {
         newWorks();
     })
-    /* const newPhoto = document.getElementById('photo-input-btn');
-    newPhoto.addEventListener('click', (e) => {
-        e.preventDefault;
-        const photoInput = document.getElementById('photo-input');
-        photoInput.click;
-    }) */
+    photoInput.addEventListener("change", checkFormValidity);
+    workName.addEventListener("input", checkFormValidity);
+    categories.addEventListener("change", checkFormValidity);
+    sendBtn.addEventListener("click", submitWorks);
+
 }
 
 async function deleteWork(e) {
@@ -210,19 +219,20 @@ function changeModal(pageNumber) {
 }
 
 function newWorks() {
-    console.log("file reader starts!")
+    const emptyImg = document.getElementById('empty-image');
     let reader = new FileReader();
     const preview = document.getElementById('new-image');
     let file = document.getElementById('photo-input').files[0];
     reader.addEventListener("load", () => {
-        console.log(reader.result);
         preview.src = reader.result;
     },
-    false,);
+        false,);
     if (file) {
+        preview.style.display = "flex";
+        emptyImg.style.display = "none";
         reader.readAsDataURL(file);
     }
-        
+
 }
 
 function formCategories(categories) {
@@ -234,8 +244,63 @@ function formCategories(categories) {
     }
 }
 
-function postForm() {
-    
+function checkFormValidity() {
+    const photoInput = document.getElementById('photo-input');
+    const workName = document.getElementById('work-name');
+    const categories = document.getElementById('categories');
+    const sendBtn = document.getElementById('add-works-btn');
+
+    if (photoInput.files.length > 0 && workName.value.trim() !== "" && categories.value.trim() !== "") {
+        console.log("validity checked")
+        sendBtn.disabled = false;
+    }
+    else {
+        sendBtn.disabled = true;
+    }
+}
+async function submitWorks(e) {
+    e.preventDefault();
+
+    const photoInput = document.getElementById('photo-input');
+    const workName = document.getElementById('work-name');
+    const categories = document.getElementById('categories');
+    const sendBtn = document.getElementById('add-works-btn');
+
+    let formData = new FormData();
+    formData.append("image", photoInput[0]);
+    formData.append("title", workName.value.trim());
+    formData.append("category", categories.value);
+
+    try {
+        const response = await fetch("http://localhost:5678/api/works", {
+            method: "POST",
+            headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            },
+            body: formData,
+        });
+
+        if (response.ok) {
+            console.log("reponse ok")
+            const newWork = await response.json();
+            console.log("Success:", newWork);
+
+            photoInput.value = "";
+            workName.value = "";
+            categories.value = "";
+            submitButton.disabled = true;
+            closeModal();
+
+            const works = await getWorks();
+            eraser('.gallery');
+            displayWorks(works);
+            
+        } else {
+            console.error("Failed to upload work");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
 
 

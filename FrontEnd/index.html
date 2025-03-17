@@ -61,31 +61,40 @@
 					<!--Page 1 pour supprimer les works-->
 					<div id="page1" class="modal-page">
 						<div class="page1-contenu">
-							<h3 id="page1-title">Galerie Photo</h3>
-								<div id="works-modifiable">
+							<h3 class="page-title">Galerie Photo</h3>
+							<div id="works-modifiable">
 
-								</div>
+							</div>
 							<button class="add-photo">Ajouter une photo</button>
 						</div>
 					</div>
 					<!--Page 2 pour ajouter des works-->
 					<div id="add-works" class="modal-page">
-						
-						<form id="photoform" action="#" method="post">
-							<img id="new-image" src="">
-							<label for="photo-input"> Choisir une photo : </label>
-						<input type="file" id="photo-input" accept="images/*">
-						<label for="work-name">Titre : </label>
-						<input type="text" id="work-name" required>
-						<label for="categories">Choisir une catégorie :</label>
-						<select id="categories" required>
-							<option> </option>
-						</select>
-						
-						<button type="submit" id="add-works-btn" disabled>Ajouter</button>
-					</form>
-					
-				</div>
+						<div class="page2-contenu">
+							<h3 class="page-title">Ajout Photo</h3>
+							<form id="photoform" action="#" method="post">
+								<div class="new-image">
+									<img id="new-image" src="">
+
+									<div id="empty-image">
+										<i class="fa-regular fa-image fa-5x"></i>
+										<button id="input-button">+ Ajouter une photo</button>
+										<p>jpg, png : 4Mo max</p>
+									</div>
+
+								</div>
+								<input type="file" id="photo-input" accept="images/*">
+								<label for="work-name">Titre  </label>
+								<input type="text" id="work-name" required>
+								<label for="categories">Choisir une catégorie </label>
+								<select id="categories" required>
+									<option> </option>
+								</select>
+							</form>
+							<button type="submit" id="add-works-btn" disabled>Valider</button>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</aside>
