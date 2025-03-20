@@ -266,6 +266,8 @@ async function submitWorks(e) {
     const workName = document.getElementById('work-name');
     const categories = document.getElementById('categories');
     const sendBtn = document.getElementById('add-works-btn');
+    const emptyImg = document.getElementById('empty-image');
+    const preview = document.getElementById('new-image');
 
     let formData = new FormData();
     formData.append("image", photoInput.files[0]);
@@ -286,15 +288,19 @@ async function submitWorks(e) {
             const newWork = await response.json();
             console.log("Success:", newWork);
 
-            photoInput.value = "";
+            preview.style.display = "none";
+            preview.src = "";
+            emptyImg.style.display = "flex";
             workName.value = "";
             categories.value = "";
             sendBtn.disabled = true;
-            closeModal();
+            modal.style.display = 'none';
 
             const works = await getWorks();
             eraser('.gallery');
             displayWorks(works);
+            eraser('.js-works-modifiable');
+            modalContent(works);
             
         } else {
             console.error("Failed to upload work");
