@@ -240,6 +240,7 @@ function formCategories(categories) {
     for (let i = 0; i < categories.length; i++) {
         const options = document.createElement('option');
         options.textContent = categories[i].name;
+        options.value = categories[i].id;
         form.appendChild(options);
     }
 }
@@ -267,7 +268,7 @@ async function submitWorks(e) {
     const sendBtn = document.getElementById('add-works-btn');
 
     let formData = new FormData();
-    formData.append("image", photoInput[0]);
+    formData.append("image", photoInput.files[0]);
     formData.append("title", workName.value.trim());
     formData.append("category", categories.value);
 
@@ -275,7 +276,7 @@ async function submitWorks(e) {
         const response = await fetch("http://localhost:5678/api/works", {
             method: "POST",
             headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
             },
             body: formData,
         });
@@ -288,7 +289,7 @@ async function submitWorks(e) {
             photoInput.value = "";
             workName.value = "";
             categories.value = "";
-            submitButton.disabled = true;
+            sendBtn.disabled = true;
             closeModal();
 
             const works = await getWorks();
