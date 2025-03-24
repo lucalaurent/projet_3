@@ -223,8 +223,10 @@ function newWorks() {
     let reader = new FileReader();
     const preview = document.getElementById('new-image');
     let file = document.getElementById('photo-input').files[0];
+
     reader.addEventListener("load", () => {
         preview.src = reader.result;
+       
     },
         false,);
     if (file) {
@@ -232,7 +234,6 @@ function newWorks() {
         emptyImg.style.display = "none";
         reader.readAsDataURL(file);
     }
-
 }
 
 function formCategories(categories) {
@@ -288,6 +289,7 @@ async function submitWorks(e) {
             const newWork = await response.json();
             console.log("Success:", newWork);
 
+            photoInput.value = "";
             preview.style.display = "none";
             preview.src = "";
             emptyImg.style.display = "flex";
