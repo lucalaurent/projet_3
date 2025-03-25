@@ -18,14 +18,12 @@ async function displayWorks(projects) {
     }
     let display = document.querySelector('.gallery');
 
-    console.log(projects);
     for (let i = 0; i < projects.length; i++) {
 
         displayWorkInGallery(projects[i], display);
     }
 }
 async function displayWorkInGallery(project, root) {
-    //console.log(project);
     const container = document.createElement('figure');
     const work = document.createElement('figcaption');
     const img = document.createElement('img');
@@ -79,7 +77,6 @@ const openModal = function (e) {
     page1 = document.getElementById('page1');
     page2 = document.getElementById('add-works');
     page1.classList.add('active');
-    console.log(e.target);
     modal.style.display = 'flex';
     modal.removeAttribute('aria-hidden');
     modal.setAttribute('aria-modal', 'true');
@@ -98,16 +95,14 @@ const editMode = function () {
         modeEdition.style.display = 'none';
         loginbtn.classList.remove('off');
         logoutbtn.classList.add('off');
-        console.log(loginbtn);
     }
     logoutbtn.addEventListener('click', () => {
-        console.log("click registered");
         localStorage.removeItem('token');
         location.reload();
     });
 }
 
-
+//Ajouter fonction pour vider le formulaire à la fermeture 
 const closeModal = function (e) {
     const page1 = document.getElementById('page1');
     const page2 = document.getElementById('add-works');
@@ -133,7 +128,6 @@ const closeModal = function (e) {
 }
 
 function modalContent(project) {
-    console.log(project);
     const photoInput = document.getElementById('photo-input');
     const workName = document.getElementById('work-name');
     const categories = document.getElementById('categories');
@@ -182,7 +176,6 @@ function modalContent(project) {
 async function deleteWork(e) {
     e.preventDefault();
     const workId = e.target.dataset.id;
-    console.log(workId);
     const answer = await fetch(`http://localhost:5678/api/works/${workId}`, {
         method: 'DELETE',
         headers: {
@@ -191,7 +184,6 @@ async function deleteWork(e) {
         }
     });
     if (answer.ok) {
-        console.log('Work deleted successfully');
         e.target.parentElement.remove();
         const gallery = document.querySelector('.gallery');
         const delWork = gallery.querySelector(`figure[data-id="${workId}"]`);
@@ -226,7 +218,7 @@ function newWorks() {
 
     reader.addEventListener("load", () => {
         preview.src = reader.result;
-       
+
     },
         false,);
     if (file) {
@@ -253,7 +245,6 @@ function checkFormValidity() {
     const sendBtn = document.getElementById('add-works-btn');
 
     if (photoInput.files.length > 0 && workName.value.trim() !== "" && categories.value.trim() !== "") {
-        console.log("validity checked")
         sendBtn.disabled = false;
     }
     else {
@@ -285,10 +276,6 @@ async function submitWorks(e) {
         });
 
         if (response.ok) {
-            console.log("reponse ok")
-            const newWork = await response.json();
-            console.log("Success:", newWork);
-
             photoInput.value = "";
             preview.style.display = "none";
             preview.src = "";
@@ -303,7 +290,7 @@ async function submitWorks(e) {
             displayWorks(works);
             eraser('.js-works-modifiable');
             modalContent(works);
-            
+
         } else {
             console.error("Failed to upload work");
         }

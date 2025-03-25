@@ -8,8 +8,8 @@ function formReset() {
 async function validateForm() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    
-    
+
+
     if (email === '' || password === '') {
         document.getElementById('loginError').textContent = 'Merci de renseigner tous les champs!';
         return false;
@@ -18,7 +18,7 @@ async function validateForm() {
         document.getElementById('loginError').textContent = 'Format email non valide!';
         return false;
     }
-    
+
     let response = await fetch('http://localhost:5678/api/users/login',
         {
             method: 'POST',
@@ -38,18 +38,18 @@ async function validateForm() {
     }
     else {
         if (response.status === 401) {
-            document.getElementById('loginError').innerHTML = 'Mot de Passe incorrect!';              
+            document.getElementById('loginError').innerHTML = 'Mot de Passe incorrect!';
         }
         if (response.status === 404) {
             document.getElementById('loginError').innerHTML = 'Compte inexistant!';
         }
     }
 }
-        
+
 // if logged in delete Login text and add logout text. 
 
-    function main() {
-        formReset();
-    }
-   
+function main() {
+    formReset();
+}
+
 main();

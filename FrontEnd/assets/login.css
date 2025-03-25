@@ -1,17 +1,85 @@
 /* General reset and basic styling */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -19,27 +87,45 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
     display: block;
 }
 
-ol, ul {
+ol,
+ul {
     list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
     quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: '';
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -47,14 +133,14 @@ table {
 }
 
 body {
-	line-height: 1;
+    line-height: 1;
     background-color: #fefdf6;
     color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-	font-family: 'Work Sans';
+    font-family: 'Work Sans';
 }
 
 
@@ -96,8 +182,9 @@ nav ul li:last-child img {
     width: 20px;
     height: 20px;
 }
-a{
-	text-decoration:none;
+
+a {
+    text-decoration: none;
 }
 
 /* Main content styling */
@@ -163,12 +250,14 @@ form input[type="submit"] {
 form input[type="submit"]:hover {
     background-color: #1D6154;
 }
+
 form a {
     color: black;
     text-decoration: underline;
 }
+
 /* Error messages styling */
-#loginError{
+#loginError {
     color: red;
     font-size: 14px;
     margin-bottom: 10px;
@@ -176,12 +265,12 @@ form a {
 
 /* Footer styling */
 footer {
-	display:flex;
-	justify-content:flex-end;
+    display: flex;
+    justify-content: flex-end;
     position: absolute;
     bottom: 10px;
     width: 100%;
     text-align: center;
     font-size: 12px;
-	padding:10px;
+    padding: 10px;
 }
