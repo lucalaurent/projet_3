@@ -1,20 +1,23 @@
 function eraser(selector) {
     let works = document.querySelector(selector);
     works.innerHTML = '';
+    //Retire le contenu de selector 
 }
 async function getWorks() {
     const answer = await fetch("http://localhost:5678/api/works");
     return await answer.json();
+    //Récupère les "works" depuis le Backend
 }
 async function getCategories() {
     const answer = await fetch("http://localhost:5678/api/categories");
     return await answer.json();
+    //Récupère les "Catégories" correspondant aux works récupéré précédement 
 }
 async function displayWorks(projects) {
-    // Check if projects is undefined or not an array
+    // Vérifie si projects est non définie ou un tableau 
     if (!projects || !Array.isArray(projects)) {
         console.error("No projects data or the response is not an array");
-        return; // Stop the function if projects is invalid
+        return; //Stop la fonction si Projects est invalid
     }
     let display = document.querySelector('.gallery');
 
@@ -34,6 +37,7 @@ async function displayWorkInGallery(project, root) {
     container.appendChild(img);
     container.appendChild(work);
     container.dataset.id = project.id;
+    
 }
 function createbutton(categories) {
     let portfolio = document.querySelector('.section-head');
@@ -102,7 +106,7 @@ const editMode = function () {
     });
 }
 
-//Ajouter fonction pour vider le formulaire à la fermeture 
+
 const closeModal = function (e) {
     const page1 = document.getElementById('page1');
     const page2 = document.getElementById('add-works');
@@ -218,7 +222,7 @@ function newWorks() {
 
     reader.addEventListener("load", () => {
         preview.src = reader.result;
-
+       
     },
         false,);
     if (file) {
@@ -290,7 +294,7 @@ async function submitWorks(e) {
             displayWorks(works);
             eraser('.js-works-modifiable');
             modalContent(works);
-
+            
         } else {
             console.error("Failed to upload work");
         }

@@ -44,9 +44,7 @@ async function validateForm() {
             document.getElementById('loginError').innerHTML = 'Compte inexistant!';
         }
     }
-}
-
-// if logged in delete Login text and add logout text. 
+} 
 
 function main() {
     formReset();
