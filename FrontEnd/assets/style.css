@@ -278,6 +278,9 @@ ul#menu-header li.off {
 	flex-direction:row;
 	align-items:space-around;
 }
+.css-modal-button i{
+	margin-right:5px;
+}
 .fa-pen-to-square{
 	padding-left:5px;
 }

@@ -1,23 +1,26 @@
+//Retire le contenu de selector
 function eraser(selector) {
     let works = document.querySelector(selector);
-    works.innerHTML = '';
-    //Retire le contenu de selector 
+    works.innerHTML = ''; 
 }
+
+//Récupère les "works" depuis le Backend
 async function getWorks() {
     const answer = await fetch("http://localhost:5678/api/works");
     return await answer.json();
-    //Récupère les "works" depuis le Backend
 }
+
+//Récupère les "Catégories" correspondant aux works récupéré précédement 
 async function getCategories() {
     const answer = await fetch("http://localhost:5678/api/categories");
     return await answer.json();
-    //Récupère les "Catégories" correspondant aux works récupéré précédement 
 }
+
+//Vérifie la validité des works et prépare leur affichage dans le DOM
 async function displayWorks(projects) {
-    // Vérifie si projects est non définie ou un tableau 
     if (!projects || !Array.isArray(projects)) {
         console.error("No projects data or the response is not an array");
-        return; //Stop la fonction si Projects est invalid
+        return; 
     }
     let display = document.querySelector('.gallery');
 
@@ -26,6 +29,8 @@ async function displayWorks(projects) {
         displayWorkInGallery(projects[i], display);
     }
 }
+
+//Créer les works à afficher dans le DOM. 
 async function displayWorkInGallery(project, root) {
     const container = document.createElement('figure');
     const work = document.createElement('figcaption');
@@ -39,6 +44,7 @@ async function displayWorkInGallery(project, root) {
     container.dataset.id = project.id;
     
 }
+//Créer les bouton de filtres à appliquer sur les works du DOM 
 function createbutton(categories) {
     let portfolio = document.querySelector('.section-head');
     const filters = document.createElement('div');
@@ -49,6 +55,7 @@ function createbutton(categories) {
         buttoncreation(filters, categories[i].name, categories[i].id);
     }
 }
+//Gére les boutons à afficher (Filtres ou modifier)
 function buttoncreation(filters, name, catId) {
     if (localStorage.getItem('token') === null) {
         const btn = document.createElement('button');
@@ -61,7 +68,7 @@ function buttoncreation(filters, name, catId) {
         btn.style.display = 'flex';
     }
 }
-
+//Applique le filtre choisi pour afficher uniquement les works correspondant 
 async function filterWorks(buttonId) {
     const works = await getWorks();
     eraser('.gallery');
@@ -74,22 +81,7 @@ async function filterWorks(buttonId) {
     }
 }
 
-let modal = null;
-
-const openModal = function (e) {
-    modal = document.querySelector(e.target.getAttribute('href'))
-    page1 = document.getElementById('page1');
-    page2 = document.getElementById('add-works');
-    page1.classList.add('active');
-    modal.style.display = 'flex';
-    modal.removeAttribute('aria-hidden');
-    modal.setAttribute('aria-modal', 'true');
-    modal.addEventListener('click', closeModal);
-    modal.querySelector('.fa-xmark').addEventListener('click', closeModal);
-    if (page2.classList.contains('active')) {
-        page2.classList.remove('active');
-    }
-}
+//Affiche la banière edit mode si l'utilisateur est connecté 
 const editMode = function () {
     const token = localStorage.getItem('token');
     const modeEdition = document.querySelector('.mode-edition');
@@ -106,7 +98,27 @@ const editMode = function () {
     });
 }
 
+//Variable utilisée dans plusieurs fonctions 
+let modal = null;
 
+//Ouvre la modal 
+const openModal = function (e) {
+    modal = document.querySelector(e.target.getAttribute('href'))
+    console.log('modal');
+    page1 = document.getElementById('page1');
+    page2 = document.getElementById('add-works');
+    page1.classList.add('active');
+    modal.style.display = 'flex';
+    modal.removeAttribute('aria-hidden');
+    modal.setAttribute('aria-modal', 'true');
+    modal.addEventListener('click', closeModal);
+    modal.querySelector('.fa-xmark').addEventListener('click', closeModal);
+    if (page2.classList.contains('active')) {
+        page2.classList.remove('active');
+    }
+}
+
+//Ferme la modal 
 const closeModal = function (e) {
     const page1 = document.getElementById('page1');
     const page2 = document.getElementById('add-works');
@@ -131,6 +143,7 @@ const closeModal = function (e) {
 
 }
 
+//Gére le contenu de la modal 
 function modalContent(project) {
     const photoInput = document.getElementById('photo-input');
     const workName = document.getElementById('work-name');
@@ -176,7 +189,7 @@ function modalContent(project) {
     sendBtn.addEventListener("click", submitWorks);
 
 }
-
+//Efface le Work selectioné dans la modal, le DOM et le backend 
 async function deleteWork(e) {
     e.preventDefault();
     const workId = e.target.dataset.id;
@@ -198,6 +211,7 @@ async function deleteWork(e) {
     }
 }
 
+//Permet la navigation d'une pas à l'autre de la modale 
 function changeModal(pageNumber) {
     const page2 = document.getElementById('add-works');
     const page1 = document.getElementById('page1');
@@ -214,6 +228,7 @@ function changeModal(pageNumber) {
     }
 }
 
+//Permet d'ajouter de nouveaux works 
 function newWorks() {
     const emptyImg = document.getElementById('empty-image');
     let reader = new FileReader();
@@ -232,6 +247,7 @@ function newWorks() {
     }
 }
 
+//Attribue les catégories du backend aux bouton <option> du formulaire 
 function formCategories(categories) {
     const form = document.getElementById('categories');
     for (let i = 0; i < categories.length; i++) {
@@ -242,6 +258,7 @@ function formCategories(categories) {
     }
 }
 
+//Vérifie que le formulaire est rempli complètement et correctement 
 function checkFormValidity() {
     const photoInput = document.getElementById('photo-input');
     const workName = document.getElementById('work-name');
@@ -255,6 +272,8 @@ function checkFormValidity() {
         sendBtn.disabled = true;
     }
 }
+
+//Ajoute les Works au backennd, au DOM et à la modal 
 async function submitWorks(e) {
     e.preventDefault();
 
@@ -303,7 +322,7 @@ async function submitWorks(e) {
     }
 }
 
-
+//Gére les appels de fonction
 async function main() {
     const projects = await getWorks();
     const categories = await getCategories();

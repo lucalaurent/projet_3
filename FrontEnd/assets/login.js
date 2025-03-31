@@ -1,3 +1,4 @@
+//Vide le formulaire au chargement de la page
 function formReset() {
     const form = document.getElementById('myForm');
     form.addEventListener('submit', (e) => {
@@ -5,6 +6,8 @@ function formReset() {
         validateForm();
     })
 };
+//Vérifie que le formulaire est rempli complètement et correctement 
+// Affiche le message d'erreur approprié en cas d'erreur 
 async function validateForm() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
@@ -46,6 +49,7 @@ async function validateForm() {
     }
 } 
 
+//Gère l'appel des fonctions 
 function main() {
     formReset();
 }
